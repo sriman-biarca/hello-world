@@ -3,7 +3,6 @@ pipeline {
   stages {
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
-
         checkout scm
     }
 
@@ -13,9 +12,10 @@ pipeline {
       }
     }
     stage('Docker Build') {
-      steps {
-        sh 'docker build -t $docker_user/helloworld:latest .'
-      }
+        app = docker.build("$docker_user/helloworld:latest")
+//      steps {
+//        sh 'docker build -t $docker_user/helloworld:latest .'
+//      }
     }
     stage('Push image') {
       docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_creds') {
