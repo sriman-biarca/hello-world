@@ -34,10 +34,8 @@ pipeline {
     }*/
     stage('Push image') {
       steps {
-        scripts {
-          withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://hub.docker.com"]) {
-            sh 'docker push $docker_user/helloworld:latest'
-          }
+        withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://hub.docker.com"]) {
+          sh 'docker push $docker_user/helloworld:latest'
         }
       }
     }
@@ -45,34 +43,13 @@ pipeline {
 }
 
 /*
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
+    stage('Push image') {
+      steps {
+        scripts {
+          withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://hub.docker.com"]) {
+            sh 'docker push $docker_user/helloworld:latest'
+          }
         }
+      }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
-            }
-        }
-    }
-}
 */
