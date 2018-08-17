@@ -34,8 +34,10 @@ pipeline {
     }*/
     stage('Push image') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_creds') {
-          sh 'docker push $docker_user/helloworld:latest'
+        scripts {
+          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_creds') {
+            sh 'docker push $docker_user/helloworld:latest'
+          }
         }
       }
     }
