@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh 'docker build -t $docker_user/helloworld:latest .'
+        sh '/usr/bin/docker build -t $docker_user/helloworld:latest .'
       }
     }
         
@@ -35,8 +35,8 @@ pipeline {
     stage('Push image') {
       steps {
         withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://registry.hub.docker.com"]) {
-          sh 'docker tag helloworld $docker_user/helloworld'
-          sh 'docker push $docker_user/helloworld:latest'
+          sh '/usr/bin/docker tag helloworld $docker_user/helloworld'
+          sh '/usr/bin/docker push $docker_user/helloworld:latest'
         }
       }
     }
