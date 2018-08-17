@@ -35,6 +35,7 @@ pipeline {
     stage('Push image') {
       steps {
         withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://registry.hub.docker.com"]) {
+          sh 'docker tag helloworld $docker_user/helloworld
           sh 'docker push $docker_user/helloworld:latest'
         }
       }
