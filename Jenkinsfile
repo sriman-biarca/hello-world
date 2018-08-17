@@ -34,7 +34,7 @@ pipeline {
     }*/
     stage('Push image') {
       steps {
-        withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://hub.docker.com"]) {
+        withDockerRegistry([credentialsId: 'dockerhub_creds', url: "https://registry.hub.docker.com"]) {
           sh 'docker push $docker_user/helloworld:latest'
         }
       }
