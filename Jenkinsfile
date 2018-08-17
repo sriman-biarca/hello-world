@@ -9,25 +9,68 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn clean package'
+        sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Docker Build') {
       steps {
-        app = docker.build("$docker_user/helloworld:latest")
+        sh 'docker build -t $docker_user/helloworld:latest .'
       }
+    }
         
 //      steps {
 //        sh 'docker build -t $docker_user/helloworld:latest .'
 //      }
-    }
+
+    /* stage('Push image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry([ credentialsId: "dockerhub_creds", url: "" ]) {
+          sh 'docker push brightbox/terraform:latest'
+        }
+      }
+    }*/
     stage('Push image') {
       steps {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_creds') {
-          app.push("${env.BUILD_NUMBER}")
-          app.push("latest")
+          sh 'docker push $docker_user/helloworld:latest'
         }
       }
     }
   }
 }
+
+/*
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') { 
+            steps {
+                sh './jenkins/scripts/deliver.sh' 
+            }
+        }
+    }
+}
+*/
