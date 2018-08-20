@@ -25,18 +25,18 @@ spec:
 #        image: biarca/4REPLICA_COUNTq-portal:dev-v5
         name: cicddemo
         ports:
-        - containerPort: 80
+        - containerPort: 7002
           name: cicddemo-http
 #        imagePullPolicy: Always
-        readinessProbe:
-          tcpSocket:
-            port: 443
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          tcpSocket:
-            port: 443
-          initialDelaySeconds: 180
-          periodSeconds: 30
+#        readinessProbe:
+#          tcpSocket:
+#            port: 7002
+#          initialDelaySeconds: 5
+#          periodSeconds: 10
+#        livenessProbe:
+#          tcpSocket:
+#            port: 7002
+#          initialDelaySeconds: 180
+#          periodSeconds: 30
         resources: {}
 status: {}

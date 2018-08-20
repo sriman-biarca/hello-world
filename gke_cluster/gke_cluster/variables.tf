@@ -3,10 +3,6 @@ variable "cluster_name" {
   description = "Name given for the GKE cluster"
 }
 
-variable "gce_internal_address" {
-  description = "Internal hostname of the gce instance"
-}
-
 variable "IMAGE_PATH" {
   description = "PATH of the image file from the bucket which you want to use for getting the portal and portlets with tag"
 }

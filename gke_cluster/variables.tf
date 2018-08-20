@@ -34,15 +34,3 @@ variable "static_ip_name" {
 variable "static_ip_count" {
   description = "number of static IPs you want to reserve"
 }
-
-variable "ssh_key_private_path" {
-  description = "Path to the SSH private key to be used for authentication."
-}
-
-variable "ssh_key_public_path" {
-  description = "Path to the SSH public key to be used for authentication."
-}
-
-variable "user_name" {
-  description = "user name of the local machine by which you want to run the script, which is later used to connect to the provisioned nodes"
-}

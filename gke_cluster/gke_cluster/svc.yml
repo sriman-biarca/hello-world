@@ -12,7 +12,7 @@ spec:
   sessionAffinity: ClientIP
   ports:
     - protocol: "TCP"
-      port: 80
-      targetPort: 80
+      port: 7002
+      targetPort: 7002
       name: cicddemo-http
 

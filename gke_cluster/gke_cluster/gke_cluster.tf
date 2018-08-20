@@ -38,10 +38,6 @@ resource "google_container_cluster" "kube_cluster" {
   provisioner "local-exec" {
     command = "sudo sed -i '9s/REPLICA_COUNT/${var.REPLICA_COUNT}/g' gke_cluster/deploy.yml"
   }
-  // replacing the text POSTGRES_HOSTNAME with the variable gce_internal_address in the file gke_cluster/deploy.yml
-  provisioner "local-exec" {
-    command = "sudo sed -i 's/POSTGRES_HOSTNAME/${var.gce_internal_address}/g' gke_cluster/deploy.yml"
-  }
   // replacing the text IMAGE_PATH with the variable IMAGE_PATH in the file gke_cluster/deploy.yml
   provisioner "local-exec" {
     command = "sudo sed -i 's/IMAGE_PATH/${var.IMAGE_PATH}/g' gke_cluster/deploy.yml"

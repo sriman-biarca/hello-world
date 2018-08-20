@@ -8,15 +8,12 @@
 # General
 #--------------------------------------------------------------
 
-cluster_name        	= "cicddemo-cluster"
-IMAGE_PATH          	= "gcr.io\\/temp-195907\\/bitbucket-sriman_biarca-cicd:2cfc78f8c34116efd2acdbcc24e489a709151c40"
+cluster_name        	= "demo-cluster"
+IMAGE_PATH          	= "csriman09\\/helloworld:latest"
 master_auth_user    	= "biarca"
 master_auth_pswd    	= "biarcasecretpassword"
-project_name        	= "temp-195907"
+project_name        	= "demo123-project"
 REPLICA_COUNT       	= "2"
-network     		= "default
-static_ip_name      	= "cicdservice-ip"
+network     		= "default"
+static_ip_name      	= "service-ip"
 static_ip_count     	= "1"
-ssh_key_public_path    	= "~/.ssh/id_rsa.pub"
-ssh_key_private_path   	= "~/.ssh/id_rsa"
-user_name           	= "biarca"

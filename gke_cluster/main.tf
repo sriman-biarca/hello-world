@@ -25,6 +25,5 @@ module "gke_cluster" {
   project_name          	= "${var.project_name}"
   REPLICA_COUNT         	= "${var.REPLICA_COUNT}"
   network      		 	= "${var.network}"
-  //subnetwork    		= "${var.subnetwork}"
   static_service_ip_address  	= "${module.static_ip.service_address}"
 }
