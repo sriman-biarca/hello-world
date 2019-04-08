@@ -13,5 +13,5 @@ RUN ls -la
 COPY --from=1 /app/target/hellow-world-0.0.1.jar /app 
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar hellow-world-0.0.1.jar"] 
-##sample-test
+CMD ["java -jar hellow-world-0.0.1.jar"]
+#sample-test
